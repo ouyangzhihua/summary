@@ -4,40 +4,40 @@ public class J14CutRope {
 	public int cuttingRope(int n)
 	{
 		/*
-		 * ��ָ Offer 14- I. ������
-		 * ����һ������Ϊ n �����ӣ�������Ӽ����������ȵ� m �Σ�m��n����������n>1����m>1����
-		 * ÿ�����ӵĳ��ȼ�Ϊ k[0],k[1]...k[m-1] ������ k[0]*k[1]*...*k[m-1] ���ܵ����˻��Ƕ��٣�
-		 * ���磬�����ӵĳ�����8ʱ�����ǰ������ɳ��ȷֱ�Ϊ2��3��3�����Σ���ʱ�õ������˻���18��
+		 * 剑指 Offer 14- I. 剪绳子
+		 * 给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n>1并且m>1），
+		 * 每段绳子的长度记为 k[0],k[1]...k[m-1] 。请问 k[0]*k[1]*...*k[m-1] 可能的最大乘积是多少？
+		 * 例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。
 		 * 
-		 * ˼·��
-		 * ����1����̬�滮
-		 * ��f(n)Ϊ���ܵ����˻������Խ���ֽ�Ϊ������������
-		 * ����������������Ž�������õ��������Ž⡣
-		 * f(2)=1, f(3)=2, �ҿ�֤��2(n-2)>n, 3(n-3)>n, ��˽����Ӽ���ʣ��2��3���ɡ�
-		 * ���裺
-		 * ���Ӷȷ�����
+		 * 思路：
+		 * 方法1：动态规划
+		 * 记f(n)为可能的最大乘积，可以将其分解为多个子问题求解
+		 * 将所有子问题的最优解求出，得到整体最优解。
+		 * f(2)=1, f(3)=2, 且可证明2(n-2)>n, 3(n-3)>n, 因此将绳子剪到剩下2或3即可。
+		 * 步骤：
+		 * 复杂度分析：
 		 * 
-		 * ����2��̰���㷨
-		 * ��n>=5ʱ����֤��2(n-2)>n, 3(n-3)>n���������ÿһ��ֻ�辡���������Ϊ3��2��
+		 * 方法2：贪婪算法
+		 * 当n>=5时，可证明2(n-2)>n, 3(n-3)>n，因此我们每一步只需尽量多剪长度为3或2的
 		 * 
 		 * ----------------------------------------------------
-		 * ��ȷ״̬�����ӵĳ��ȣ��������ٳ���
-		 * ����dp���飺dp[i]��ʾ����Ϊi�����ӿɼ��ɵ����˻�
-		 * ��ȷѡ�񣺳���Ϊi���Լ���1~i/2����
+		 * 明确状态：绳子的长度，剪掉多少长度
+		 * 定义dp数组：dp[i]表示长度为i的绳子可剪成的最大乘积
+		 * 明确选择：长度为i可以剪掉1~i/2长度
 		 * base case: dp[2]=2;dp[3]=3; n<0,return -1; n=1,dp[1]=1;
-		 * ״̬ת�ƣ�dp[i]=max(1*dp[i-1],2*dp[i-2],...)
+		 * 状态转移：dp[i]=max(1*dp[i-1],2*dp[i-2],...)
 		 * */
-		//������١��ݹ�
+		//暴力穷举、递归
 		if(n <= 1)
-			return -1;	//������
+			return -1;	//输入检查
 		if(n <= 3)
 			return n-1;
 		return cut(n);
 		
-		//����1����̬�滮
+		//方法1：动态规划
 		/*
 		if(n <= 1)
-			return -1;	//������
+			return -1;	//输入检查
 		else if(n <= 3)	//f(2)=1, f(3)=2
 			return n-1;
 		int[] products = new int[n+1];	//
@@ -55,18 +55,18 @@ public class J14CutRope {
 				if(product > max)
 					max = product;	
 			}
-			products[i] = max;	//������Ϊiʱ�����ֵ�浽products[i]
+			products[i] = max;	//将长度为i时的最大值存到products[i]
 		}
 		return max;
 		*/
 		
-		//����2��̰���㷨
+		//方法2：贪婪算法
 		/*
 		if(n <= 1)
-			return -1;	//������
+			return -1;	//输入检查
 		else if(n <= 3)	//f(2)=1, f(3)=2
 			return n-1;	
-		else if(n == 4)	//�߽�ֵ�ж�
+		else if(n == 4)	//边界值判断
 			return 4;
 		long max;
 		long times = n/3;
@@ -80,13 +80,13 @@ public class J14CutRope {
 		*/
 		
 		
-		//���Ǵ����������⣬��������
+		//考虑大数求余问题，快速求余
 		/*
 		if(n <= 1)
-			return -1;	//������
+			return -1;	//输入检查
 		else if(n <= 3)	//f(2)=1, f(3)=2
 			return n-1;	
-		else if(n == 4)	//�߽�ֵ�ж�
+		else if(n == 4)	//边界值判断
 			return 4;
 		int max;
 		long times = n/3;

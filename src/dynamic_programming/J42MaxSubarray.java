@@ -4,29 +4,29 @@ public class J42MaxSubarray {
 	public int maxSubArray(int[] nums)
 	{
 		/*
-		 * ��ָ Offer 42. ���������������
-		 * ����һ���������飬�����е�һ������������������һ�������顣������������ĺ͵����ֵ��Ҫ��ʱ�临�Ӷ�ΪO(n)��
+		 * 剑指 Offer 42. 连续子数组的最大和
+		 * 输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。要求时间复杂度为O(n)。
 		 * 
-		 * ˼·��
-		 * ����1����̬�滮
-		 * dp[i]��Ϊ��num[i]Ϊ��β�ĺ����������顣
-		 * dp[i]=dp[i-1]+num[i], ��dp[i-1]<=0,��˵��dp[i-1]��dp[i]û������Ĺ��ף���ʱdp[i]=num[i]
-		 * ��dp[i-1]>0, ��ʱdp[i]=dp[i-1]+max(num[i],0)��
-		 * ���裺
-		 * ����������nums=null
+		 * 思路：
+		 * 方法1：动态规划
+		 * dp[i]记为以num[i]为结尾的和最大的子数组。
+		 * dp[i]=dp[i-1]+num[i], 若dp[i-1]<=0,则说明dp[i-1]对dp[i]没有增大的贡献，此时dp[i]=num[i]
+		 * 若dp[i-1]>0, 此时dp[i]=dp[i-1]+max(num[i],0)。
+		 * 步骤：
+		 * 特例处理：nums=null
 		 * 
-		 * 1,�������
-		 * Ҫ����ֵ�����ȿ��Ƕ�̬�滮����̬�滮��ʵ������ټӼ�֦����¼.
-		 * 2����̬�滮
-		 * ��ȷ״̬�����������һ��Ԫ��
-		 * ����dp���飺dp[i]��ʾ�Ե�i��Ԫ�ؽ�β������͵����ֵ��
-		 * ȷ��ѡ�����ӵ�i+1��Ԫ��
+		 * 1,暴力穷举
+		 * 要求最值，首先考虑动态规划。动态规划其实就是穷举加剪枝或备忘录.
+		 * 2，动态规划
+		 * 明确状态：子数组最后一个元素
+		 * 定义dp数组：dp[i]表示以第i个元素结尾子数组和的最大值。
+		 * 确定选择：增加第i+1个元素
 		 * base case: 
-		 * ״̬ת�ƣ���dp[i-1]<=0,dp[i]=nums[i];
-		 * 			��dp[i-1]>0,dp[i]=dp[i-1]+max(nums[i],0)
+		 * 状态转移：若dp[i-1]<=0,dp[i]=nums[i];
+		 * 			若dp[i-1]>0,dp[i]=dp[i-1]+max(nums[i],0)
 		 * */
-		//��һ�����������
-		//ʱ�临�Ӷȣ�O(N^2)���ռ临�Ӷȣ�O(1)
+		//第一步：暴力穷举
+		//时间复杂度：O(N^2)，空间复杂度：O(1)
 		/*
 		if(nums == null || nums.length == 0)
 			return 0;
@@ -43,7 +43,7 @@ public class J42MaxSubarray {
 		}
 		return max;
 		*/
-		//�ڶ�������̬�滮
+		//第二步：动态规划
 		if(nums == null || nums.length == 0)
 			return 0;
 		int[] dp = new int[nums.length];
