@@ -24,6 +24,7 @@ public class J42MaxSubarray {
 		 * base case: 
 		 * 状态转移：若dp[i-1]<=0,dp[i]=nums[i];
 		 * 			若dp[i-1]>0,dp[i]=dp[i-1]+max(nums[i],0)
+		 * 3，优化，只要求得dp数组中最大的值，就在状态遍历中都判断一次，存下最大的dp就行
 		 * */
 		//第一步：暴力穷举
 		//时间复杂度：O(N^2)，空间复杂度：O(1)
@@ -44,14 +45,41 @@ public class J42MaxSubarray {
 		return max;
 		*/
 		//第二步：动态规划
+		//时间复杂度：O(2N)，空间复杂度：O(N)
+		/*
 		if(nums == null || nums.length == 0)
 			return 0;
 		int[] dp = new int[nums.length];
 		dp[0] = nums[0];
-		for(int i = 0; i < nums.length; i++)
+		for(int i = 1; i < nums.length; i++)
 		{
-			
+			if(dp[i-1] <= 0)
+			{
+				dp[i] = nums[i];
+			}
+			else
+			{
+				dp[i] = dp[i-1] + nums[i];
+			}
 		}
-		
+		int max = Integer.MIN_VALUE;
+		for(int i = 0; i < dp.length; i++)
+		{
+			if(dp[i] > max)
+				max = dp[i];
+		}
+		return max;
+		*/
+		//优化
+		//时间复杂度：O(N)，空间复杂度：O(1)
+		if(nums == null || nums.length == 0)
+			return 0;
+		int dp = nums[0];
+		for(int i = 1; i < nums.length; i++)
+		{
+			nums[i] += Math.max(nums[i-1], 0);
+			dp = Math.max(dp, nums[i]);
+		}
+		return dp;
 	}
 }

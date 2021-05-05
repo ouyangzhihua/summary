@@ -3,7 +3,7 @@ package recursion;
 import java.util.Map;
 import java.util.HashMap;
 
-public class J07RebuildTree {
+public class J7RebuildBinaryTree {
 	/*
 	 * 剑指 Offer 07. 重建二叉树
 	 * 需求：输入某二叉树的前序遍历和中序遍历的结果，重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。 
