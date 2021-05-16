@@ -58,8 +58,7 @@ public class L46NumberPermute {
 			}
 			List<List<Integer>> res = f.permute(nums);
 			System.out.println(res);				
-		}
-		
+		}		
 		in.close();
 	}
 }
