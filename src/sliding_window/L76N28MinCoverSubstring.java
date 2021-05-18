@@ -78,6 +78,5 @@ public class L76N28MinCoverSubstring {
 			System.out.println(res);
 		}
 		in.close();
-
 	}
 }
