@@ -75,10 +75,11 @@ public class J42MaxSubarray {
 		if(nums == null || nums.length == 0)
 			return 0;
 		int dp = nums[0];
-		for(int i = 1; i < nums.length; i++)
+		int pre = 0;
+		for(int i = 0; i < nums.length; i++)
 		{
-			nums[i] += Math.max(nums[i-1], 0);
-			dp = Math.max(dp, nums[i]);
+			pre += Math.max(pre+nums[i], nums[i]);
+			dp = Math.max(dp, pre);
 		}
 		return dp;
 	}
