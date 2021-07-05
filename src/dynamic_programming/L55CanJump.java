@@ -7,14 +7,11 @@ public class L55CanJump {
 	 */
 	public boolean canJump(int[] nums)
 	{
+		//
+		/*
 		boolean[] dp = new boolean[nums.length];
 		dp[0] = true;
-		int max = 0;
-		if(nums[0] == 0 && nums.length == 1 )
-		{
-			return true;
-		}
-		
+		int max = 0;		
 		for(int i = 0; i < nums.length; i++)
 		{
 			max = Math.max(nums[i], max);
@@ -24,7 +21,7 @@ public class L55CanJump {
 			}
 			if(dp[i] == true)
 			{
-				for(int j = i; j <= i + nums[i]; j++)
+				for(int j = i+1; j <= i + nums[i]; j++)
 				{
 					if(j == nums.length)
 	                {
@@ -32,9 +29,24 @@ public class L55CanJump {
 	                }
 					dp[j] = true;
 				}
-			}
-			
+			}			
 		}
 		return dp[nums.length-1];
+		*/
+		
+		int n = nums.length;
+		int rm = 0;
+		for(int i = 0; i < n; i++)
+		{
+			if(i <= rm)
+			{
+				rm = Math.max(rm, i+nums[i]);
+				if(rm >= n-1)
+				{
+					return true;
+				}
+			}			
+		}
+		return false;
 	}
 }
