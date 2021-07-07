@@ -64,7 +64,8 @@ public class J32LevelTraversalBinaryTree {
 		que.offer(root);
 		while(!que.isEmpty())
 		{
-			for(int i = que.size(); i > 0; i--)
+			int n = que.size();
+			for(int i = n; i > 0; i--)
 			{
 				TreeNode node = que.poll();
 				res.add(node.val);
