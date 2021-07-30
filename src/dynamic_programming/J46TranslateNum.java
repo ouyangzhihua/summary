@@ -20,6 +20,43 @@ public class J46TranslateNum {
 		//方法1：动态规划
 		/*
 		if(num < 0)
+        {
+            return 0;
+        } 
+        String s = String.valueOf(num);
+        if(s.length() == 1)
+        {
+            return 1;
+        }
+        int n = s.length();
+        int[] dp = new int[n];
+        dp[0] = 1;
+        String pre = s.substring(0, 2);
+        if(pre.compareTo("25") <= 0 && pre.compareTo("10") >= 0)
+        {
+            dp[1] = 2;
+        }
+        else
+        {
+            dp[1] = 1;
+        }
+        for(int i = 2; i < n; i++)
+        {
+            pre = s.substring(i-1, i+1);
+            if(pre.compareTo("25") <= 0 && pre.compareTo("10") >= 0)
+            {
+                dp[i] = dp[i-1] + dp[i-2];
+            }
+            else
+            {
+                dp[i] = dp[i-1];
+            }
+        }
+        return dp[n-1];
+    	*/
+		
+		/*
+		if(num < 0)
 			return 0;
 		String s = String.valueOf(num);
 		int f1 = 0, f2 = 0, f = 1;
