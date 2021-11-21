@@ -167,6 +167,5 @@ public class J48L3LongestSubstring {
 			System.out.println(res);
 		}
 		in.close();
-
 	}
 }
